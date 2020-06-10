@@ -1,4 +1,4 @@
-# K번째 수
+# Programmers - K번째 수
 
 ---
 
@@ -29,6 +29,7 @@
 
 ---
 
+**Python**
 > ```python
 > def solution(array, commands):
 > answer = []
@@ -40,6 +41,28 @@
 > return answer
 > 
 > ```
+
+<br>
+
+**Swift**
+```swift
+func solution(_ array:[Int], _ commands: [[Int]]) -> [Int] {
+    var answer = [Int]()
+    
+    for i in 0..<commands.count {
+        var tmp = [Int]()
+        for j in commands[i][0]-1...commands[i][1]-1 {
+            tmp.append(array[j])
+        }
+        tmp.sort()
+        answer.append(tmp[commands[i][2]-1])
+    }
+    
+    return answer
+    
+}
+```
+
 
 ### 코드 설명
 
