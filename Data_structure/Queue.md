@@ -70,11 +70,11 @@ class ArrayQueue:
 
 |   연산    |   복잡도   |
 | :-------: | :--------: |
-|  size()   |   $O(1)$   |
-| isEmpty() |   $O(1)$   |
-| enqueue() |   $O(1)$   |
-| dequeue() | **$O(n)$** |
-|  peek()   |   $O(1)$   |
+|  size()   |   O(N)   |
+| isEmpty() |   O(N)   |
+| enqueue() |   O(N)   |
+| dequeue() | O(N) |
+|  peek()   |   O(N)   |
 
 **dequeue()의 경우, 큐의 길이에 비례하는 복잡도를 갖는다.**
 
@@ -108,3 +108,83 @@ class LinkedListQueue:
     def peek(self):
         return self.data.getAt(1).data
 ```
+
+---
+---
+
+<br>
+
+<br>
+
+## Collections 모듈의 deque 객체
+---
+
+`Python` 에서는 `collections` 모듈의 `deque` 객체를 이용하여 큐를 이용할 수 있다.
+
+`deque`란, 스택과 큐를 합친 자료구조로서 가장자리에 원소를 넣거나 뺄 수 있다.
+
+<br>
+
+### deque - init
+
+deque를 이용해 큐 생성시 사용한다.
+
+```python
+
+from collections import deque
+
+# 빈 큐 생성
+queue = deque()
+
+# 원소와 함께 생성
+queue = deque([1, 2, 3])
+
+# 최대 길이 지정하여 생성
+queue = deque(maxlen = 3)
+
+```
+
+
+### deque - append(x)
+
+생성한 큐에 원소를 삽입할 때 사용한다.
+
+
+```python
+my_deque = deque()
+my_deque.append(3)
+print(my_deque)   # deque([3])
+```
+
+### deque - popleft()
+
+큐에서 원소를 제거할 때 사용한다.
+
+```python
+my_deque = deque([1, 2, 3])
+
+while my_deque:
+  print("popleft: {}".format(my_deque.popleft()))
+
+# popleft: 1
+# popleft: 2
+# popleft: 3
+```
+
+### deque - clear()
+
+```python
+queue = deque([1, 2, 3])
+
+print(queue)
+queue.clear()
+print(queue)
+
+# deque([1, 2, 3])
+# deque([])
+
+```
+
+
+
+
