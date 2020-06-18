@@ -18,7 +18,69 @@
 
 큐는 한 쪽 끝에서 반대쪽 끝에서 뽑아내기 때문에 선입선출 특징을 가지는 선형 자료구조다.
 
-###**큐의 추상적 자료구조 구현**
+**Stack2개를 이용하여 Queue 만들기**
+```python
+# Stack Class 정의
+class MyStack(object):
+    def __init__(self):
+        self.lst = list()
+
+    def push(self, x):
+        self.lst.append(x)
+
+    def pop(self):
+        return self.lst.pop()
+
+    def size(self):
+        return len(self.lst)
+
+# Queue 클래스 정의
+class MyQueue(object):
+    def __init__(self, max_size):
+        self.stack1 = MyStack()
+        self.stack2 = MyStack()
+        self.max_size = max_size
+
+    def qsize(self):
+        return self.stack1.size() + self.stack2.size()
+        
+    def push(self, item):
+        if self.stack1.size() < max_size:
+            self.stack1.push(item)
+            return True
+        else:
+            return False
+    
+    # Emtpy Queue 체크 -> stack2가 비어있을 경우 stack1의 데이터 모두 stack2로 push -> stack2가 비어있지 않을 경우 바로 pop
+    def pop(self):
+        if queue.qsize() == 0:          
+            return False
+        elif self.stack2.size() == 0:              
+                while self.stack1.size() != 0:
+                    self.stack2.push(self.stack1.pop())
+                return self.stack2.pop()
+        else:
+            return self.stack2.pop()
+        
+        
+n, max_size = map(int, input().strip().split(' '))
+
+queue = MyQueue(max_size)
+
+while n:
+    n -= 1
+    cmd = list(input().split(' '))
+    if cmd[0] == "PUSH":
+        print(queue.push(cmd[1]))
+    elif cmd[0] == "POP":
+        print(queue.pop())
+    elif cmd[0] == "SIZE":
+        print(queue.qsize())
+```
+
+
+
+### **큐의 추상적 자료구조 구현**
 
 (1) 배열을 이용하여 구현
 
@@ -28,7 +90,7 @@
 
 * 양방향 연결 리스트 이용
 
-###**연산의 정의**
+### **연산의 정의**
 
 > **size()** - 현재 큐에 들어 있는 데이터 원소의 수
 >
